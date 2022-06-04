@@ -1,56 +1,50 @@
 import React from "react";
-import { ComponentStateCounter, GlobalStateCounter } from "component/counter";
-
-const style = {
-  border: "solid 1px #CCC",
-  display: "inline-block",
-  padding: 10,
-  margin: 10,
-};
-
-const leftMargin = {
-  marginLeft: 10,
-};
+import { CounterGroup } from "component/CounterGroup";
+import {
+  AppStateCounter,
+  ComponentStateCounter,
+  GlobalStateCounter0,
+  GlobalStateCounter1,
+  GlobalStateCounter2,
+  GlobalStateCounter3,
+  AsyncStateCounter0,
+  AsyncStateCounter1,
+  AsyncStateCounter2,
+  AsyncStateCounter3,
+} from "component/Counter";
 
 function App() {
-  const [visibleGroup1, setVisiableGroup1] = React.useState(true);
-  const [visibleGroup2, setVisiableGroup2] = React.useState(true);
+  const [count, setCount] = React.useState(0);
+  const appStateProps = { count, setCount };
   return (
     <div>
-      <div style={style}>
-        <div style={leftMargin}>
-          <input
-            type="checkbox"
-            checked={visibleGroup1}
-            onChange={() => setVisiableGroup1(!visibleGroup1)}
-          />
-          Component State{" "}
-        </div>
-        {visibleGroup1 && (
-          <>
-            <ComponentStateCounter />
-            <ComponentStateCounter />
-            <ComponentStateCounter />
-          </>
-        )}
-      </div>
-      <div style={style}>
-        <div style={leftMargin}>
-          <input
-            type="checkbox"
-            checked={visibleGroup2}
-            onChange={() => setVisiableGroup2(!visibleGroup2)}
-          />
-          Global State
-        </div>
-        {visibleGroup2 && (
-          <>
-            <GlobalStateCounter />
-            <GlobalStateCounter />
-            <GlobalStateCounter />
-          </>
-        )}
-      </div>
+      <CounterGroup title="Component State">
+        <ComponentStateCounter />
+        <ComponentStateCounter />
+        <ComponentStateCounter />
+        <ComponentStateCounter />
+      </CounterGroup>
+
+      <CounterGroup title="App State">
+        <AppStateCounter count={count} setCount={setCount} />
+        <AppStateCounter count={count} setCount={setCount} />
+        <AppStateCounter {...{ count, setCount }} />
+        <AppStateCounter {...appStateProps} />
+      </CounterGroup>
+
+      <CounterGroup title="Global State">
+        <GlobalStateCounter0 />
+        <GlobalStateCounter1 />
+        <GlobalStateCounter2 />
+        <GlobalStateCounter3 />
+      </CounterGroup>
+
+      <CounterGroup title="Async State">
+        <AsyncStateCounter0 />
+        <AsyncStateCounter1 />
+        <AsyncStateCounter2 />
+        <AsyncStateCounter3 />
+      </CounterGroup>
     </div>
   );
 }
