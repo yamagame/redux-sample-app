@@ -26,6 +26,7 @@ export type AppStateCounterProps = {
 
 export function AppStateCounter(props: AppStateCounterProps) {
   const { count, setCount } = props;
+  console.log(`render: ${AppStateCounter.name}`);
   return (
     <div style={style}>
       <div>{count}</div>
@@ -36,6 +37,7 @@ export function AppStateCounter(props: AppStateCounterProps) {
 
 export function ComponentStateCounter() {
   const [count, setCount] = React.useState(0);
+  console.log(`render: ${ComponentStateCounter.name}`);
   return (
     <div style={style}>
       <div>{count}</div>
@@ -49,6 +51,7 @@ export function GlobalStateCounter0() {
   const state = useAppSelector(applicationSelector);
   const action = { type: "application/increment" };
   // const action = { type: "application/setCount", payload: state.count + 1 };
+  console.log(`render: ${GlobalStateCounter0.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -62,6 +65,7 @@ export function GlobalStateCounter1() {
   const state = useAppSelector(applicationSelector);
   const action = actions.increment();
   // const action = actions.setCount(state.count + 1);
+  console.log(`render: ${GlobalStateCounter1.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -74,6 +78,7 @@ export function GlobalStateCounter2() {
   const dispatch = useAppDispatch();
   const state = useAppSelector(applicationSelector);
   const action = () => actions.setCount(state.count + 1);
+  console.log(`render: ${GlobalStateCounter2.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -88,6 +93,7 @@ export function GlobalStateCounter3() {
   const action = React.useCallback(() => {
     return actions.setCount(state.count + 1);
   }, [state.count]);
+  console.log(`render: ${GlobalStateCounter3.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -109,6 +115,7 @@ export function AsyncStateCounter0() {
       }
     });
   };
+  console.log(`render: ${AsyncStateCounter0.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -133,6 +140,7 @@ export function AsyncStateCounter1() {
       }
     });
   };
+  console.log(`render: ${AsyncStateCounter1.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -157,6 +165,7 @@ export function AsyncStateCounter2() {
     },
     [state.count]
   );
+  console.log(`render: ${AsyncStateCounter2.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>
@@ -191,6 +200,7 @@ export function AsyncStateCounter3() {
       });
     }
   };
+  console.log(`render: ${AsyncStateCounter3.name}`);
   return (
     <div style={style}>
       <div>{state.count}</div>

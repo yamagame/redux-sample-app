@@ -17,6 +17,13 @@ export type CounterGroupProps = React.PropsWithChildren<{
 export const CounterGroup: React.FC<CounterGroupProps> = (props) => {
   const [visible, setVisible] = React.useState(true);
   const { title, children } = props;
+  React.useEffect(() => {
+    console.log(`effect: ${CounterGroup.name}`);
+  });
+  React.useEffect(() => {
+    console.log(`effect: ${CounterGroup.name}`, visible);
+  }, [visible]);
+  console.log(`render: ${CounterGroup.name}`, title, visible);
   return (
     <div style={style}>
       <div style={leftMargin}>
