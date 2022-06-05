@@ -210,12 +210,15 @@ export function AsyncStateCounter3() {
       await wait(1, () => {
         dispatch(actions.increment());
       });
+      console.log(getState().application.count, "p1");
       await wait(1, () => {
         dispatch(actions.increment());
       });
+      console.log(getState().application.count, "p2");
       await wait(1, () => {
         dispatch(actions.increment());
       });
+      console.log(getState().application.count, "p3");
     }
   };
   console.log(`render: ${AsyncStateCounter3.name}`);
