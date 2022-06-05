@@ -1,7 +1,8 @@
 import React from "react";
-import { useAppDispatch, useAppSelector, store } from "store";
+import { useAppDispatch, useAppSelector, store, RootState } from "store";
 import { applicationSelector } from "store/selector";
 import { actions } from "features/application";
+import { ReactReduxContext } from "react-redux";
 
 const style = {
   border: "solid 1px #CCC",
@@ -98,6 +99,23 @@ export function GlobalStateCounter3() {
     <div style={style}>
       <div>{state.count}</div>
       <button onClick={() => dispatch(action())}>count up</button>
+    </div>
+  );
+}
+
+export function GlobalStateCounter4() {
+  const { store } = React.useContext(ReactReduxContext);
+  const state = React.useSyncExternalStore<RootState>(
+    store.subscribe,
+    store.getState
+  );
+  const dispatch = useAppDispatch();
+  const action = { type: "application/increment" };
+  console.log(`render: ${GlobalStateCounter4.name}`);
+  return (
+    <div style={style}>
+      <div>{state.application.count}</div>
+      <button onClick={() => dispatch(action)}>count up</button>
     </div>
   );
 }

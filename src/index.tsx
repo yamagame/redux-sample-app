@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "store";
 import { Provider } from "react-redux";
+import { BackgroundColorProvider } from "context/BackgroundColor";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <BackgroundColorProvider>
+        <App />
+      </BackgroundColorProvider>
     </Provider>
   </React.StrictMode>
 );

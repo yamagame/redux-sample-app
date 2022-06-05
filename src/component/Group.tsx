@@ -10,20 +10,23 @@ const leftMargin = {
   marginLeft: 10,
 };
 
-export type CounterGroupProps = React.PropsWithChildren<{
+export type GroupProps = React.PropsWithChildren<{
   title: string;
 }>;
 
-export const CounterGroup: React.FC<CounterGroupProps> = (props) => {
+export const Group: React.FC<GroupProps> = (props) => {
   const [visible, setVisible] = React.useState(true);
   const { title, children } = props;
   React.useEffect(() => {
-    console.log(`effect: ${CounterGroup.name}`);
+    console.log(`effect: ${Group.name}`);
   });
   React.useEffect(() => {
-    console.log(`effect: ${CounterGroup.name}`, visible);
+    console.log(`effect: ${Group.name}`, visible);
   }, [visible]);
-  console.log(`render: ${CounterGroup.name}`, title, visible);
+  React.useLayoutEffect(() => {
+    console.log(`layout: ${Group.name}`);
+  });
+  console.log(`render: ${Group.name}`, title, visible);
   return (
     <div style={style}>
       <div style={leftMargin}>
