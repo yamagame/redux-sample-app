@@ -7,7 +7,6 @@ import {
   GlobalStateCounter1,
   GlobalStateCounter2,
   GlobalStateCounter3,
-  GlobalStateCounter4,
   AsyncStateCounter0,
   AsyncStateCounter1,
   AsyncStateCounter2,
